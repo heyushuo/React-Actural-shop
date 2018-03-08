@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
 
-import Header from '../../components/Header'
+import Header from '../../components/HomeHeader'
 import CurrentCity from '../../components/CurrentCity'
 import CityList from '../../components/CityList'
 

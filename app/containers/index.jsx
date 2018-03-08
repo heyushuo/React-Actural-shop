@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as userInfoActionsFromOtherFile from '../actions/userinfo'
 //引头部
-import HomeHeader from '../components/Header'
+import HomeHeader from '../components/HomeHeader'
 class App extends React.Component {
     constructor(props, context) {
         super(props, context);
