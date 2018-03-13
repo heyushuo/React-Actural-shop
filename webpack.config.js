@@ -68,9 +68,10 @@ module.exports = {
     ],
 
     devServer: {
-        colors: true, //终端中输出结果为彩色
-        historyApiFallback: true, //不跳转，在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
+        historyApiFallback: true, //不跳转，在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，任意的 404 响应都可能需要被替代为 index.html
         inline: true, //实时刷新
-        hot: true  // 使用热加载插件 HotModuleReplacementPlugin
+        hot: true,  // 使用热加载插件 HotModuleReplacementPlugin
+        port:9000
+//      contentBase：     这个不设置默认在根目录下即  webpack.config.js当前目录下
     }
 }

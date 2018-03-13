@@ -5,8 +5,6 @@ import CITYNAME  from '../config/localStoreKey'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as userInfoActionsFromOtherFile from '../actions/userinfo'
-//引头部
-import HomeHeader from '../components/HomeHeader'
 class App extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -17,31 +15,27 @@ class App extends React.Component {
     }
     //组件已经渲染完，dom中已经有html了
 	componentDidMount() {
-        console.log(CITYNAME)
+
 		// 获取位置信息
 		let cityName = LocalStore.getItem(CITYNAME);
 		console.log(cityName)
 		if (cityName == null) {
 			cityName = '北京'
 		}
-		/*this.props.userInfoActions.update({
+		this.props.userInfoActions.update({
 			cityName: cityName
-		})*/
-		// 更改状态
-		this.setState({
-			initDone: true
 		})
+
 	}
     render() {
         return (
             <div>
-				<HomeHeader></HomeHeader>
+
                 {
                     this.state.initDone
                     ? this.props.children
                     : "正在加载中。。。"
 				}
-                {/*{cityName}*/}
             </div>
         )
     }
