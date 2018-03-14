@@ -18,7 +18,7 @@ class App extends React.Component {
 
 		// 获取位置信息
 		let cityName = LocalStore.getItem(CITYNAME);
-		console.log(cityName)
+
 		if (cityName == null) {
 			cityName = '北京'
 		}

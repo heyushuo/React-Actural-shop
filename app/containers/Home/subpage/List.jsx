@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { getListData } from '../../../fetch/home/home'
 
 import ListCompoent from '../../../components/List'
-import LoadMore from '../../../components/LoadMore'
+/*import LoadMore from '../../../components/LoadMore'*/
 
 import './style.less'
 
@@ -11,12 +11,38 @@ class List extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-        this.state = {
+        /*this.state = {
             data: [],
             hasMore: false,
             isLoadingMore: false,
             page: 0
+        }*/
+        this.state={
+            data:[],
+            page:0,
+            hasMore:true
         }
+    }
+	componentDidMount(){
+
+        this.loadFirsfData()
+	}
+
+        //获取首屏数据
+    loadFirsfData(){
+		const cityName=this.props.cityName;
+		getListData(cityName,this.state.page).then(res=>{
+		    return res.json()
+        }).then(json=>{
+            console.log(json)
+            this.setState({
+                data:json.data,
+                hasMore:json.hasMore
+            })
+        }).catch(err=>{
+            alert("error")
+        })
+
     }
     render() {
         return (
@@ -24,18 +50,18 @@ class List extends React.Component {
                 <h2 className="home-list-title">猜你喜欢</h2>
                 {
                     this.state.data.length
-                    ? <ListCompoent data={this.state.data}/>
-                    : <div>{/* 加载中... */}</div>
+                    ?<ListCompoent data={this.state.data} />
+                    :<div>加载中。。。</div>
                 }
-                {
+               {/* {
                     this.state.hasMore
                     ? <LoadMore isLoadingMore={this.state.isLoadingMore} loadMoreFn={this.loadMoreData.bind(this)}/>
                     : ''
-                }
+                }*/}
             </div>
         )
     }
-    componentDidMount() {
+   /* componentDidMount() {
         // 获取首页数据
         this.loadFirstPageData()
     }
@@ -81,7 +107,7 @@ class List extends React.Component {
                 console.error('首页”猜你喜欢“获取数据报错, ', ex.message)
             }
         })
-    }
+    }*/
 }
 
 export default List

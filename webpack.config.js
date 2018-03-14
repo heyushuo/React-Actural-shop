@@ -8,7 +8,7 @@ module.exports = {
     output: {
         filename: "bundle.js"
     },
-
+	devtool: 'eval-source-map',
     resolve:{
         extensions:['', '.js','.jsx']
     },
@@ -68,10 +68,18 @@ module.exports = {
     ],
 
     devServer: {
-        historyApiFallback: true, //不跳转，在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，任意的 404 响应都可能需要被替代为 index.html
-        inline: true, //实时刷新
-        hot: true,  // 使用热加载插件 HotModuleReplacementPlugin
-        port:9000
-//      contentBase：     这个不设置默认在根目录下即  webpack.config.js当前目录下
+		proxy: {
+			// 凡是 `/api` 开头的 http 请求，都会被代理到 localhost:3000 上，由 koa 提供 mock 数据。
+			// koa 代码在 ./mock 目录中，启动命令为 npm run mock
+			'/api': {
+				target: 'http://localhost:3000',
+				secure: false
+			}
+		},
+		contentBase: "./public", //本地服务器所加载的页面所在的目录
+		colors: true, //终端中输出结果为彩色
+		historyApiFallback: true, //不跳转
+		inline: true, //实时刷新
+		hot: true  // 使用热加载插件 HotModuleReplacementPlugin
     }
 }
