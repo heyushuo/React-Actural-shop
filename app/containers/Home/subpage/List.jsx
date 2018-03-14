@@ -31,6 +31,8 @@ class List extends React.Component {
 
         //获取首屏数据
     loadFirsfData(){
+	    console.log(this)
+        console.log(this.props)
 		const cityName=this.props.cityName;
 		const result=getListData(cityName,this.state.page)
         this.resultHandle(result)
@@ -66,7 +68,7 @@ class List extends React.Component {
     render() {
         return (
             <div>
-                <h2 className="home-list-title">猜你喜欢{this.state.data.length}</h2>
+                <h2 className="home-list-title">猜你喜欢{this.props.cityName}</h2>
                 {
                     this.state.data.length
                     ?<ListCompoent data={this.state.data} />

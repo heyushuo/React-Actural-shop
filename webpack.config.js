@@ -54,7 +54,7 @@ module.exports = {
         }),
 
         // 热加载插件
-        new webpack.HotModuleReplacementPlugin(),
+        /*new webpack.HotModuleReplacementPlugin(),*/
 
         // 打开浏览器
         new OpenBrowserPlugin({
@@ -79,7 +79,7 @@ module.exports = {
 		contentBase: "./public", //本地服务器所加载的页面所在的目录
 		colors: true, //终端中输出结果为彩色
 		historyApiFallback: true, //不跳转
-		inline: true, //实时刷新
-		hot: true  // 使用热加载插件 HotModuleReplacementPlugin
+		inline: true //实时刷新
+		//hot: true  // 使用热加载插件 HotModuleReplacementPlugin
     }
 }

@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
 
-import Header from '../../components/HomeHeader'
+/*import Header from '../../components/HomeHeader'
 import CurrentCity from '../../components/CurrentCity'
-import CityList from '../../components/CityList'
+import CityList from '../../components/CityList'*/
 
 import * as userInfoActionsFromOtherFile from '../../actions/userinfo'
 
@@ -18,16 +18,21 @@ class City extends React.Component {
         super(props, context);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
+    componentDidMount(){
+        console.log(this.props.userinfo)
+    }
     render() {
         return (
             <div>
-                <Header title="选择城市"/>
+                选择城市
+                {/*{this.props.userinfo}*/}
+               {/* <Header title="选择城市"/>
                 <CurrentCity cityName={this.props.userinfo.cityName}/>
-                <CityList changeFn={this.changeCity.bind(this)}/>
+                <CityList changeFn={this.changeCity.bind(this)}/>*/}
             </div>
         )
     }
-    changeCity(newCity) {
+   /* changeCity(newCity) {
         if (newCity == null) {
             return
         }
@@ -41,7 +46,7 @@ class City extends React.Component {
 
         // 跳转页面
         hashHistory.push('/')
-    }
+    }*/
 }
 
 // -------------------redux react 绑定--------------------
