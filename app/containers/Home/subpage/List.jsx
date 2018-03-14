@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { getListData } from '../../../fetch/home/home'
 
 import ListCompoent from '../../../components/List'
-/*import LoadMore from '../../../components/LoadMore'*/
+import LoadMore from '../../../components/LoadMore'
 
 import './style.less'
 
@@ -20,7 +20,8 @@ class List extends React.Component {
         this.state={
             data:[],
             page:0,
-            hasMore:true
+            hasMore:false,
+            isLoadingMore:false
         }
     }
 	componentDidMount(){
@@ -31,33 +32,52 @@ class List extends React.Component {
         //获取首屏数据
     loadFirsfData(){
 		const cityName=this.props.cityName;
-		getListData(cityName,this.state.page).then(res=>{
-		    return res.json()
-        }).then(json=>{
-            console.log(json)
-            this.setState({
-                data:json.data,
-                hasMore:json.hasMore
-            })
-        }).catch(err=>{
-            alert("error")
+		const result=getListData(cityName,this.state.page)
+        this.resultHandle(result)
+    }
+    //加载跟多
+	loadMoreFn(){
+        this.setState({
+            isLoadingMore:true,
+			page:this.state.page+1
         })
+		const cityName=this.props.cityName;
+        const page=this.state.page;
 
+		const result=getListData(cityName,page)
+		this.resultHandle(result)
+    }
+    //统一来处理返回结果的函数
+	resultHandle(result){
+		result.then(res=>{
+                return res.json()
+            }).then(json=>{
+                console.log(json.hasMore)
+                this.setState({
+					// 注意，这里讲最新获取的数据，拼接到原数据之后，使用 concat 函数
+                    data:this.state.data.concat(json.data),
+                    hasMore:json.hasMore,
+                    isLoadingMore:false,
+                })
+            }).catch(err=>{
+                alert("error")
+            })
     }
     render() {
         return (
             <div>
-                <h2 className="home-list-title">猜你喜欢</h2>
+                <h2 className="home-list-title">猜你喜欢{this.state.data.length}</h2>
                 {
                     this.state.data.length
                     ?<ListCompoent data={this.state.data} />
                     :<div>加载中。。。</div>
                 }
-               {/* {
+                {
                     this.state.hasMore
-                    ? <LoadMore isLoadingMore={this.state.isLoadingMore} loadMoreFn={this.loadMoreData.bind(this)}/>
-                    : ''
-                }*/}
+                    ? <LoadMore isLoadingMore={this.state.isLoadingMore} loadMoreFn={this.loadMoreFn.bind(this)}  ></LoadMore>
+                    : ""
+                }
+
             </div>
         )
     }
