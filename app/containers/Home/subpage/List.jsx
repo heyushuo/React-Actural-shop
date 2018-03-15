@@ -26,14 +26,14 @@ class List extends React.Component {
     }
 	componentDidMount(){
 
-        this.loadFirsfData()
+        /*this.loadFirsfData()*/
 	}
-
+	componentWillReceiveProps(nextProps){
+		//一定要在这里qu执行函数，不然获取不到父组件的值
+		this.loadFirsfData(nextProps.cityName)
+	}
         //获取首屏数据
-    loadFirsfData(){
-	    console.log(this)
-        console.log(this.props)
-		const cityName=this.props.cityName;
+    loadFirsfData(cityName){
 		const result=getListData(cityName,this.state.page)
         this.resultHandle(result)
     }
@@ -54,7 +54,7 @@ class List extends React.Component {
 		result.then(res=>{
                 return res.json()
             }).then(json=>{
-                console.log(json.hasMore)
+
                 this.setState({
 					// 注意，这里讲最新获取的数据，拼接到原数据之后，使用 concat 函数
                     data:this.state.data.concat(json.data),
