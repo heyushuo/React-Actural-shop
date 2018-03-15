@@ -25,15 +25,16 @@ class List extends React.Component {
         }
     }
 	componentDidMount(){
-
-        /*this.loadFirsfData()*/
+        this.loadFirsfData()
 	}
-	componentWillReceiveProps(nextProps){
+	/*componentWillReceiveProps(nextProps){
+		console.log(nextProps.cityName)
 		//一定要在这里qu执行函数，不然获取不到父组件的值
 		this.loadFirsfData(nextProps.cityName)
-	}
+	}*/
         //获取首屏数据
-    loadFirsfData(cityName){
+    loadFirsfData(){
+    	const cityName=this.props.cityName;
 		const result=getListData(cityName,this.state.page)
         this.resultHandle(result)
     }
@@ -83,53 +84,6 @@ class List extends React.Component {
             </div>
         )
     }
-   /* componentDidMount() {
-        // 获取首页数据
-        this.loadFirstPageData()
-    }
-    // 获取首页数据
-    loadFirstPageData() {
-        const cityName = this.props.cityName
-        const result = getListData(cityName, 0)
-        this.resultHandle(result)
-    }
-    // 加载更多数据
-    loadMoreData() {
-        // 记录状态
-        this.setState({
-            isLoadingMore: true
-        })
-
-        const cityName = this.props.cityName
-        const page = this.state.page
-        const result = getListData(cityName, page)
-        this.resultHandle(result)
-
-        // 增加 page 技术
-        this.setState({
-            page: page + 1,
-            isLoadingMore: false
-        })
-    }
-    // 处理数据
-    resultHandle(result) {
-        result.then(res => {
-            return res.json()
-        }).then(json => {
-            const hasMore = json.hasMore
-            const data = json.data
-
-            this.setState({
-                hasMore: hasMore,
-                // 注意，这里讲最新获取的数据，拼接到原数据之后，使用 concat 函数
-                data: this.state.data.concat(data)
-            })
-        }).catch(ex => {
-            if (__DEV__) {
-                console.error('首页”猜你喜欢“获取数据报错, ', ex.message)
-            }
-        })
-    }*/
 }
 
 export default List

@@ -28,7 +28,6 @@ class City extends React.Component {
 		//修改rudux
 		const userinfo=this.props.userinfo;
 		userinfo.cityName=newCity;
-		console.log(userinfo)
 		this.props.userInfoActions.update(userinfo);
 		// 修改 cookie
 		localStore.setItem('CITYNAME', newCity)

@@ -6,10 +6,11 @@ import App from '../containers'            //container文件夹中inde.jsx页面
 //下边这些都是子路由
 import Home from '../containers/Home'
 import City from '../containers/City'
+import Search from '../containers/Search'
 /*import Home from '../containers/Home'    
 
 import User from '../containers/User'
-import Search from '../containers/Search'
+
 import Detail from '../containers/Detail'
 import NotFound from '../containers/404'
 */
@@ -23,7 +24,7 @@ class RouterMap extends React.Component {
                 <Route path='/' component={App}>
                 	<IndexRoute component={Home}/>
                     <Route path='/city' component={City}/>
-                    <Route path='' ></Route>
+                    <Route path='/search/:type(/:keyword)' component={Search} ></Route>
                    {/*<IndexRoute component={Home}/>
                     <Route path='/city' component={City}/>
                     <Route path='/User' component={User}/>

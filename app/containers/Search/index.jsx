@@ -6,6 +6,10 @@ class Search extends React.Component {
         super(props, context);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
+    componentDidMount(){
+        const req=this.props.params;
+        console.log(req)
+    }
     render() {
         return (
             <div>
