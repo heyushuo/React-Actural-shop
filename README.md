@@ -1,3 +1,6 @@
-# react-simple-o2o-demo
+# 使用方法 #
+    npm install 下载所有的依赖
+	
+	npm run mock  开启接口服务
 
-React基础知识介绍，详情参考[这里](./docs/README.md)
+	npm run start 开启项目
