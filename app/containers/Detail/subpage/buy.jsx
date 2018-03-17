@@ -29,7 +29,8 @@ class Buy extends React.Component {
     checkStoreState() {
         const id = this.props.id
         const store = this.props.store
-
+        console.log(id)
+        console.log(store)
         store.forEach(item => {
             if (item.id === id) {
                 // 已经被收藏
@@ -74,6 +75,7 @@ class Buy extends React.Component {
 
         const id = this.props.id
         const storeActions = this.props.storeActions
+        console.log(storeActions)
         if (this.state.isStore) {
             // 已经被收藏了，则取消收藏
             storeActions.rm({id: id})
