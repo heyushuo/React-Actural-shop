@@ -16,7 +16,7 @@ class User extends React.Component {
         const userinfo = this.props.userinfo
         return (
             <div>
-                <Header title="用户主页" backRouter="/home"/>
+                <Header title="用户主页" backRouter="/"/>
                 <UserInfo username={userinfo.username} city={userinfo.cityName}/>
                 <OrderList username={userinfo.username}/>
             </div>

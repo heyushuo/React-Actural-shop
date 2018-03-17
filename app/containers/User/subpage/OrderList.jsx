@@ -56,8 +56,9 @@ class OrderList extends React.Component {
             return res.json()
         }).then(json => {
             if (json.errno === 0) {
+               /* window.location.reload()*/
                 // 已经评价，修改状态
-                callback()
+                callback();
             }
         })
     }

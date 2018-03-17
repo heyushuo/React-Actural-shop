@@ -22,7 +22,7 @@ class Header extends React.Component {
     clickHandle() {
         const backRouter = this.props.backRouter
         if (backRouter) {
-            hashHistory.push(hashHistory)
+            hashHistory.push(backRouter)
         } else {
             window.history.back()
         }
